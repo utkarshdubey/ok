@@ -1,0 +1,92 @@
+/* Fonts */
+@font-face {
+  font-family: "Metropolis";
+  src: url("/fonts/Metropolis/Regular.otf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url("/fonts/Metropolis/SemiBold.otf");
+  font-style: medium;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url("/fonts/Metropolis/Bold.otf");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Metropolis";
+  src: url("/fonts/Metropolis/Black.otf");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+/* Variables */
+:root {
+  --primary-grey: hsl(219, 12%, 68%);
+  --background-grey: hsl(220 6% 28%);
+  --primary: hsl(272, 76%, 47%);
+  --success: hsl(145, 63%, 49%);
+  --danger: hsl(6, 78%, 57%);
+  
+}
+
+/* Globals */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #151921;
+  font-family: Metropolis;
+  /* font-weight: 400; */
+  font-size: 14px;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+svg * {
+  transform-origin: 50%;
+}
+/* Keyframes */
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes one {
+  100% {
+    transform: rotate(360deg) translate(17.5%, 17.5%);
+  }
+}
+@keyframes two {
+  100% {
+    transform: rotate(360deg) translate(17.5%, -17.5%);
+  }
+}
+@keyframes three {
+  100% {
+    transform: rotate(360deg) translate(-17.5%, 17.5%);
+  }
+}
+@keyframes four {
+  100% {
+    transform: rotate(360deg) translate(-17.5%, -17.5%);
+  }
+}
