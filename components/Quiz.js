@@ -2,7 +2,7 @@ import InfoBox from "@/components/InfoBox";
 import Sparkles from "@/components/Sparkles/Sparkles";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { useTimer } from "react-timer-hook";
 import {
   language,
@@ -31,26 +31,33 @@ const Quiz = ({ stateName, questions, changeQuestion }) => {
   const [questionLevel, setQuestionLevel] = React.useState(0);
   const [score, setScore] = useRecoilState(ScoreAtom);
 
-  const expiryTimestamp = new Date();
-  expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + 5);
+  const expiryTimestamp = useMemo(() => {
+    const x = new Date();
+    x.setSeconds(x.getSeconds() + 5);
+    return x;
+  }, [questionLevel]);
 
-  const { seconds, minutes, hours, days, start, pause, resume, restart } =
-    useTimer({
-      expiryTimestamp,
-      onExpire: () => {
-        const time = new Date();
-        time.setSeconds(time.getSeconds() + 5);
-        restart(time);
-        nextQuestion();
-      },
-    });
+  const {
+    seconds,
+    restart,
+    isRunning,
+  } = useTimer({
+    expiryTimestamp,
+    onExpire: () => {},
+  });
+  useEffect(() => {
+    if (isRunning) return;
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 5);
+    nextQuestion();
+    restart(time);
+  }, [isRunning]);
 
   const lang = useRecoilValue(language);
   const nextQuestion = () => {
     if (questionLevel > questions.length - 2) {
       return router.push("/score");
     }
-
     setQuestionLevel(questionLevel + 1);
   };
 
